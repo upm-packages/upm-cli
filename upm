@@ -1,1 +1,129 @@
 #!/bin/bash
+
+PROGNAME="$( basename $0 )"
+
+cwd=`pwd -P`
+
+TARGET_FILE=$0
+while [ "$TARGET_FILE" != "" ]; do
+    cd `dirname $TARGET_FILE`
+    FILENAME=`basename $TARGET_FILE`
+    TARGET_FILE=`readlink $FILENAME`
+done
+DIRECTORY=`pwd -P`
+cd $cwd
+
+function usage() {
+  cat << __USAGE__
+Usage: ${PROGNAME} <command>
+  Command line interface for Unity Package Manager
+
+Commands:
+  install     Install commands from gist
+  init        Initialize Unity project for packages
+  add         Add something into project
+  help        Show help
+
+Options:
+  -h, --help    Show usage.
+__USAGE__
+  exit 1
+}
+
+function usage_add() {
+  cat << __USAGE__
+Usage: ${PROGNAME} add <subcommand>
+  Add something into Unity Package Project
+
+Commands:
+  registry    Add registry settings into Packages/manifest.json
+  package     Add package into Packages/manifest.json
+
+Options:
+  -h, --help    Show usage.
+__USAGE__
+  exit 1
+}
+
+PARAM=()
+COMMAND=""
+SUBCOMMAND=""
+for OPT in "$@"; do
+  case "${OPT}" in
+    'init' )
+      COMMAND="init"; shift
+      ;;
+    'add' )
+      COMMAND="add"; shift
+
+      case "$1" in
+        'registry' )
+          SUBCOMMAND="registry"; shift
+          ;;
+        'package' )
+          SUBCOMMAND="package"; shift
+          ;;
+        * )
+          SUBCOMMAND="package"
+          ;;
+      esac
+      ;;
+    'help' )
+      COMMAND="help"; shift
+
+      if [[ -z "$1" ]]; then
+        usage
+      fi
+
+      case "$1" in
+        'add' )
+          usage_add
+          ;;
+      esac
+      # 通常のオプションの場合
+      HOGE=true; shift
+      ;;
+    '-h' | '--help' )
+      if [[ "${COMMAND}" = "add" ]]; then
+        usage_add
+      else
+        usage
+      fi
+      ;;
+    '--' | '-' )
+      shift
+      PARAM+=( "$@" )
+      break
+      ;;
+    -* )
+      echo "${PROGNAME}: illegal option -- '$( echo $1 | sed 's/^-*//' )'" 1>&2
+      exit 1
+      ;;
+    * )
+      if [[ -n "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
+        PARAM+=( "$1" ); shift
+      fi
+      ;;
+  esac
+done
+
+if [[ -z "${COMMAND}" ]]; then
+  usage
+fi
+
+case "${COMMAND}" in
+  'init' )
+    source "${DIRECTORY}/scripts/upm-init.sh" "${PARAM[@]}"
+    ;;
+  'add' )
+    case "${SUBCOMMAND}" in
+      'registry' )
+        source "${DIRECTORY}/scripts/upm-add-registry.sh" "${PARAM[@]}"
+        ;;
+      'package' )
+        source "${DIRECTORY}/scripts/upm-add-package.sh" "${PARAM[@]}"
+        ;;
+    esac
+    ;;
+esac
+
