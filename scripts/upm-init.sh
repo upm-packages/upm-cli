@@ -1,17 +1,6 @@
 #!/bin/bash
 
-function exists() {
-  needle=$1; shift
-  haystack=$@
-  for item in ${haystack}; do
-    if [ "${needle}" = "${item}" ]; then
-      echo 0
-      return
-    fi
-  done
-  echo 1
-  return
-}
+source "${DIRECTORY}/scripts/lib/function/exists.sh"
 
 REGISTRY_NAME="$1"
 PACKAGE_NAME="$2"
@@ -27,13 +16,8 @@ config_file="${HOME}/.upm-config.json"
 
 source "${DIRECTORY}/scripts/lib/variable/registries.sh"
 source "${DIRECTORY}/scripts/lib/variable/registry-name.sh"
-
 source "${DIRECTORY}/scripts/lib/variable/package-name.sh"
-source "${DIRECTORY}/scripts/lib/validate/package-name.sh"
-
 source "${DIRECTORY}/scripts/lib/variable/display-name.sh"
-source "${DIRECTORY}/scripts/lib/validate/display-name.sh"
-
 source "${DIRECTORY}/scripts/lib/variable/description.sh"
 
 registry_json=$(cat ${config_file} | jq ".\"registries\".\"${REGISTRY_NAME}\"")

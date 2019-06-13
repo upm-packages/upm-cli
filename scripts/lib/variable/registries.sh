@@ -13,3 +13,5 @@ do
 "
   fi
 done
+
+source "${DIRECTORY}/scripts/lib/validate/registries.sh"
