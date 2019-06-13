@@ -184,7 +184,7 @@ case "${COMMAND}" in
       'registry' )
         source "${DIRECTORY}/scripts/upm-add-registry.sh" "${PARAM[@]}"
         ;;
-      'package' || '' )
+      'package' )
         source "${DIRECTORY}/scripts/upm-add-package.sh" "${PARAM[@]}"
         ;;
     esac

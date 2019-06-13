@@ -14,7 +14,7 @@ __VALIDATE_MANIFEST__
 fi
 
 manifest_file="Packages/manifest.json"
-package_json="Assets/package.json"
+package_json_file="Assets/package.json"
 
 [[ -n "${PACKAGE_NAME}" ]] || read -p "Full-Qualified Package Name (ex: dev.monry.upm.some-package): " PACKAGE_NAME
 
@@ -56,5 +56,5 @@ fi
 
 manifest_json=$(cat ${manifest_file} | jq ".dependencies |= . + {\"${package_name}\": \"${version}\"}")
 echo ${manifest_json} | jq -M '.' > ${manifest_file}
-package_json=$(cat ${package_json} | jq ".dependencies |= . + {\"${package_name}\": \"${version}\"}")
-echo ${package_json} | jq -M '.' > ${package_json}
+package_json=$(cat ${package_json_file} | jq ".dependencies |= . + {\"${package_name}\": \"${version}\"}")
+echo ${package_json} | jq -M '.' > ${package_json_file}
