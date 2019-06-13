@@ -29,6 +29,19 @@ for OPT in "$@"; do
           ;;
       esac
       ;;
+    'remove' )
+      COMMAND="remove"; shift
+
+      case "$1" in
+        'package' )
+          SUBCOMMAND="package"; shift
+          source "${DIRECTORY}/scripts/lib/option/upm-remove-package.sh"
+          break
+          ;;
+        * )
+          ;;
+      esac
+      ;;
     'help' )
       HELP=1; shift
       ;;

@@ -26,5 +26,15 @@ if [ ${HELP} -eq 1 ]; then
           ;;
       esac
       ;;
+    'remove' )
+      case "${SUBCOMMAND}" in
+        'package' )
+          source "${DIRECTORY}/scripts/lib/usage/upm-remove-package.sh"
+          ;;
+        * )
+          source "${DIRECTORY}/scripts/lib/usage/upm-remove.sh"
+          ;;
+      esac
+      ;;
   esac
 fi
