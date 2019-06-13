@@ -8,6 +8,8 @@ for OPT in "$@"; do
   case "${OPT}" in
     'init' )
       COMMAND="init"; shift
+      source "${DIRECTORY}/scripts/lib/option/upm-init.sh"
+      break
       ;;
     'add' )
       COMMAND="add"; shift
@@ -15,9 +17,13 @@ for OPT in "$@"; do
       case "$1" in
         'registry' )
           SUBCOMMAND="registry"; shift
+          source "${DIRECTORY}/scripts/lib/option/upm-add-registry.sh"
+          break
           ;;
         'package' )
           SUBCOMMAND="package"; shift
+          source "${DIRECTORY}/scripts/lib/option/upm-add-package.sh"
+          break
           ;;
         * )
           ;;
@@ -39,6 +45,7 @@ for OPT in "$@"; do
       exit 1
       ;;
     * )
+      echo $OPT
       if [[ -n "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
         PARAM+=( "$1" ); shift
       fi

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +u
+
 case "${COMMAND}" in
   'init' )
     source "${DIRECTORY}/scripts/upm-init.sh" "${PARAM[@]}"
@@ -15,3 +17,5 @@ case "${COMMAND}" in
     esac
     ;;
 esac
+
+set -u

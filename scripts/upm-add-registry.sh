@@ -1,10 +1,8 @@
 #!/bin/bash
 
-source "${DIRECTORY}/scripts/lib/function/exists.sh"
-
-REGISTRY_NAME="$1"
-
 set -ue
+
+source "${DIRECTORY}/scripts/lib/function/exists.sh"
 
 source "${DIRECTORY}/scripts/lib/validate/npmrc.sh"
 source "${DIRECTORY}/scripts/lib/validate/upm-config.sh"

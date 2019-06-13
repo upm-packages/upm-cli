@@ -1,8 +1,5 @@
 #!/bin/bash
 
-PACKAGE_ID="$1"
-VERSION="$2"
-
 set -ue
 
 source "${DIRECTORY}/scripts/lib/validate/package-json.sh"
