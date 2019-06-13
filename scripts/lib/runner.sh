@@ -16,6 +16,13 @@ case "${COMMAND}" in
         ;;
     esac
     ;;
+  'remove' )
+    case "${SUBCOMMAND}" in
+      'package' )
+        source "${DIRECTORY}/scripts/upm-remove-package.sh" "${PARAM[@]}"
+        ;;
+    esac
+    ;;
 esac
 
 set -u
