@@ -106,3 +106,9 @@ upm add package <package_name> <package_version>
 | --- | --- |
 | package_name | Full qualified package name (ex: `dev.monry.upm.some-package`) |
 | package_version | Version of package |
+
+## License
+
+Copyright &copy; 2019 Tetsuya Mori
+
+Released under the MIT license, see [LICENSE.txt](LICENSE.txt)
