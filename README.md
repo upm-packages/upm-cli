@@ -12,6 +12,12 @@ bash <(curl -sL https://raw.githubusercontent.com/upm-packages/upm-cli/master/sc
 
 **Notice**: This command creates a symbolic link to `/usr/local/bin/upm`
 
+## Requirements
+
+* [jq](https://stedolan.github.io/jq/)
+* [git](https://git-scm.com/)
+* [Unity](https://unity.com/) 2019.1 or higher
+
 ## Configuration
 
 Put configuration file like as below to `~/.upm-config.json`
