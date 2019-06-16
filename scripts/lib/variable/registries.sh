@@ -11,5 +11,3 @@ do
   registry_list="${registry_list}[${index}] ${registry_name}
 "
 done
-
-source "${DIRECTORY}/scripts/lib/validate/registries.sh"
