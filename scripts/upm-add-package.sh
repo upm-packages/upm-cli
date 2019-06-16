@@ -2,7 +2,7 @@
 
 set -ue
 
-source "${DIRECTORY}/scripts/lib/validate/package-json.sh"
+source "${DIRECTORY}/scripts/lib/validate/manifest-json.sh"
 
 manifest_file="Packages/manifest.json"
 package_json_file="Assets/package.json"
