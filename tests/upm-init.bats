@@ -19,6 +19,17 @@ function teardown() {
   temp_del "${TEST_TEMP_DIR}"
 }
 
+@test "upm-init / no registry configured" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/empty.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+  run ${cwd}/upm init <<<"Test.Project
+Test Project
+Description"
+
+  assert_output -p "No registries configured"
+}
+
 @test "upm-init / single registry configured (STDIN)" {
   cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/single.upm-config.json ~/.upm-config.json
   cwd=$(pwd)
