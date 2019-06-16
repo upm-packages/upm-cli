@@ -2,13 +2,17 @@
 
 set -ue
 
-source "${DIRECTORY}/scripts/lib/validate/manifest-json.sh"
+source "${DIRECTORY}/scripts/lib/validation/manifest-json.sh"
 
 manifest_file="Packages/manifest.json"
 package_json_file="Assets/package.json"
 
 source "${DIRECTORY}/scripts/lib/variable/package-id.sh"
+source "${DIRECTORY}/scripts/lib/validation/package-id.sh"
+source "${DIRECTORY}/scripts/lib/validation/matched-registry.sh"
+
 source "${DIRECTORY}/scripts/lib/variable/version.sh"
+source "${DIRECTORY}/scripts/lib/validation/version.sh"
 
 package_id=${PACKAGE_ID}
 version=${VERSION}
