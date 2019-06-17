@@ -94,3 +94,46 @@ Description"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "dev.sample.upm1"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "\"displayName\": \"Test Project\""
 }
+
+@test "upm-init / invalid Registry Name passed" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/multiple.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+  run ${cwd}/upm init upm3.sample.dev Test.Project "Test Project" Description
+
+  assert_output -p "does not configured in"
+}
+
+@test "upm-init / invalid Registry index passed" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/multiple.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+  run ${cwd}/upm init <<<"3
+Test.Project
+Test Project
+Description"
+
+  assert_output -p "Choice value in"
+}
+
+@test "upm-init / Package Name is not passed" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/single.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+  run ${cwd}/upm init <<<"
+Test Project
+Description"
+
+  assert_output -p "Please specify Package Name"
+}
+
+@test "upm-init / Display Name is not passed" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/single.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+  run ${cwd}/upm init <<<"Test.Project
+
+Description"
+
+  assert_output -p "Please specify Display Name"
+}
