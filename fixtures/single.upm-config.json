@@ -1,0 +1,28 @@
+{
+  "registries": {
+    "upm.sample.dev": {
+      "name": "Sample",
+      "protocol": "http",
+      "hostname": "upm.sample.dev",
+      "scopes": [
+        "dev.sample.upm"
+      ],
+      "unity_version": "2019.1",
+      "author": {
+        "name": "Test",
+        "url": "https://sample.dev/",
+        "email": "test@sample.dev"
+      },
+      "license": {
+        "type": "MIT",
+        "url": "https://sample.mit-license.org/"
+      },
+      "repository": {
+        "type": "git",
+        "user": "sample",
+        "organization": ""
+      },
+      "domain": "dev.sample.upm"
+    }
+  }
+}

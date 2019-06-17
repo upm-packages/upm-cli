@@ -14,9 +14,25 @@ bash <(curl -sL https://raw.githubusercontent.com/upm-packages/upm-cli/master/sc
 
 ## Requirements
 
+* macOS Mojave
+* [Unity](https://unity.com/) 2019.1 or higher
 * [jq](https://stedolan.github.io/jq/)
 * [git](https://git-scm.com/)
-* [Unity](https://unity.com/) 2019.1 or higher
+
+## Requirements for Development
+
+* [bats](https://github.com/sstephenson/bats)
+    * [bats-support](https://github.com/ztombol/bats-support)
+    * [bats-assert](https://github.com/ztombol/bats-assert)
+    * [bats-file](https://github.com/peshay/bats-file)
+
+```bash
+brew install bats
+
+npm i -g -D https://github.com/ztombol/bats-support
+npm i -g -D https://github.com/ztombol/bats-assert
+npm i -g -D https://github.com/peshay/bats-file
+```
 
 ## Configuration
 

@@ -1,0 +1,52 @@
+{
+  "registries": {
+    "upm1.sample.dev": {
+      "name": "Sample1",
+      "protocol": "http",
+      "hostname": "upm1.sample.dev",
+      "scopes": [
+        "dev.sample.upm1"
+      ],
+      "unity_version": "2019.1",
+      "author": {
+        "name": "Test1",
+        "url": "https://sample.dev/",
+        "email": "test@sample.dev"
+      },
+      "license": {
+        "type": "MIT",
+        "url": "https://sample.mit-license.org/"
+      },
+      "repository": {
+        "type": "git",
+        "user": "sample",
+        "organization": ""
+      },
+      "domain": "dev.sample.upm1"
+    },
+    "upm2.sample.dev": {
+      "name": "Sample2",
+      "protocol": "http",
+      "hostname": "upm2.sample.dev",
+      "scopes": [
+        "dev.sample.upm2"
+      ],
+      "unity_version": "2019.1",
+      "author": {
+        "name": "Test",
+        "url": "https://sample.dev/",
+        "email": "test@sample.dev"
+      },
+      "license": {
+        "type": "MIT",
+        "url": "https://sample.mit-license.org/"
+      },
+      "repository": {
+        "type": "git",
+        "user": "sample",
+        "organization": ""
+      },
+      "domain": "dev.sample.upm2"
+    }
+  }
+}
