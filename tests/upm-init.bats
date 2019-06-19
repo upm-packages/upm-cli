@@ -113,7 +113,14 @@ Test.Project
 Test Project
 Description"
 
-  assert_output -p "Choice value in"
+  assert_output -p "Choice value in [1..2]"
+
+  run ${cwd}/upm init <<<"0
+Test.Project
+Test Project
+Description"
+
+  assert_output -p "Choice value in [1..2]"
 }
 
 @test "upm-init / Package Name is not passed" {
