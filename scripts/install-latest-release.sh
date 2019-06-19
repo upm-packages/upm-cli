@@ -10,4 +10,5 @@ cd ~/.upm
 curl -sLo ${tarball_file} https://github.com/upm-packages/upm-cli/archive/${latest_version}.tar.gz
 tar zxf ${tarball_file}
 rm ${tarball_file}
+echo ${latest_version} > "`pwd`/${name}/VERSION.txt"
 ln -sf "`pwd`/${name}/upm" /usr/local/bin/upm

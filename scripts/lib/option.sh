@@ -45,6 +45,11 @@ for OPT in "$@"; do
     'help' )
       HELP=1; shift
       ;;
+    '-v' | '--version' )
+      shift
+      cat "${DIRECTORY}/VERSION.txt"
+      exit 0
+      ;;
     '-h' | '--help' )
       HELP=1; shift
       ;;
