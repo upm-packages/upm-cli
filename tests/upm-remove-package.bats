@@ -29,13 +29,7 @@ function teardown() {
   run ${cwd}/upm add package dev.sample.upm.foo 1.2.3
   run ${cwd}/upm remove package <<<"dev.sample.upm.foo"
 
-  cat "${TEST_TEMP_DIR}/Test-Project/Assets/package.json"
-
-  refute_output --partial "dev.sample.upm.foo"
-
-  cat "${TEST_TEMP_DIR}/Test-Project/Packages/manifest.json"
-
-  refute_output --partial "dev.sample.upm.foo"
+  assert_output --partial "Successfully remove package \"dev.sample.upm.foo\" from project"
 }
 
 @test "upm-remove-package / normal (parameters)" {
@@ -48,13 +42,7 @@ function teardown() {
   run ${cwd}/upm add package dev.sample.upm.foo 1.2.3
   run ${cwd}/upm remove package dev.sample.upm.foo
 
-  cat "${TEST_TEMP_DIR}/Test-Project/Assets/package.json"
-
-  refute_output --partial "dev.sample.upm.foo"
-
-  cat "${TEST_TEMP_DIR}/Test-Project/Packages/manifest.json"
-
-  refute_output --partial "dev.sample.upm.foo"
+  assert_output --partial "Successfully remove package \"dev.sample.upm.foo\" from project"
 }
 
 @test "upm-remove-package / package does not exists" {
