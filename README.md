@@ -129,6 +129,18 @@ upm add package <package_name> <package_version>
 | package_name | Full qualified package name (ex: `dev.monry.upm.some-package`) |
 | package_version | Version of package |
 
+### `upm remove package`
+
+Remove package dependency from `Packages/manifest.json` and `Assets/package.json`.
+
+```bash
+upm remove package <package_id>
+```
+
+| Name | Description |
+| --- | --- |
+| package_id | Full qualified package name (ex: `dev.monry.upm.some-package`) |
+
 ## License
 
 Copyright &copy; 2019 Tetsuya Mori
