@@ -9,6 +9,7 @@ package_json_file="Assets/package.json"
 
 source "${DIRECTORY}/scripts/lib/variable/package-id.sh"
 source "${DIRECTORY}/scripts/lib/validation/package-id.sh"
+source "${DIRECTORY}/scripts/lib/variable/matched-registry.sh"
 source "${DIRECTORY}/scripts/lib/validation/matched-registry.sh"
 
 source "${DIRECTORY}/scripts/lib/variable/version.sh"
