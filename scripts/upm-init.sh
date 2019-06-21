@@ -41,8 +41,7 @@ unity_version=$(echo ${registry_json} | jq -r '."unity_version"')
 author_name=$(echo ${registry_json} | jq -r '."author"."name"')
 author_url=$(echo ${registry_json} | jq -r '."author"."url"')
 author_email=$(echo ${registry_json} | jq -r '."author"."email"')
-license_type=$(echo ${registry_json} | jq -r '."license"."type"')
-license_url=$(echo ${registry_json} | jq -r '."license"."url"')
+license=$(echo ${registry_json} | jq -r '."license"')
 repository_type=$(echo ${registry_json} | jq -r '."repository"."type"')
 repository_user=$(echo ${registry_json} | jq -r '."repository"."user"')
 if [ -z "${repository_user}" ]; then
@@ -69,10 +68,7 @@ package_json=$(cat << __PACKAGE_JSON__
     "url": "${author_url}",
     "email": "${author_email}"
   },
-  "license": {
-    "type": "${license_type}",
-    "url": "${license_url}"
-  },
+  "license": "${license}",
   "keywords": [
   ],
   "category": "",
