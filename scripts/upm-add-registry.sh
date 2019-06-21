@@ -31,3 +31,7 @@ if [ ! -f "Packages/manifest.json" ]; then
 fi
 manifest_json=$(cat ${manifest_file} | jq "${filter}")
 echo ${manifest_json} | jq -M '.' > ${manifest_file}
+
+cat << __MESSAGE__
+Successfully add registry "${REGISTRY_NAME}" to project 🗄
+__MESSAGE__
