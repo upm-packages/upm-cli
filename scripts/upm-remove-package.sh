@@ -33,3 +33,7 @@ else
   package_json=$(cat ${package_json_file} | jq "del(.dependencies.\"${package_id}\")")
   echo ${package_json} | jq -M '.' > ${package_json_file}
 fi
+
+cat << __MESSAGE__
+Successfully remove package "${package_id}" from project 🗑
+__MESSAGE__
