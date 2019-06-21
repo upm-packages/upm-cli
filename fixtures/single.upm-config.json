@@ -13,10 +13,7 @@
         "url": "https://sample.dev/",
         "email": "test@sample.dev"
       },
-      "license": {
-        "type": "MIT",
-        "url": "https://sample.mit-license.org/"
-      },
+      "license": "MIT",
       "repository": {
         "type": "git",
         "user": "sample",
