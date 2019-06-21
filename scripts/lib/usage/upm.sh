@@ -5,9 +5,9 @@ Usage: ${PROGNAME} <command>
   Command line interface for Unity Package Manager
 
 Commands:
-  install     Install commands from gist
   init        Initialize Unity project for packages
   add         Add something into project
+  remove      Remove something from project
   help        Show help
 
 Options:

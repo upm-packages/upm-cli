@@ -116,18 +116,30 @@ upm add registry <registry_name>
 | --- | --- |
 | registry_name | Name of registry configured in `~/.upm-config.json` |
 
-### `upm add [package]`
+### `upm add package`
 
 Add package dependency into `Packages/manifest.json` and `Assets/package.json`.
 
 ```bash
-upm add package <package_name> <package_version>
+upm add package <package_id> <package_version>
 ```
 
 | Name | Description |
 | --- | --- |
-| package_name | Full qualified package name (ex: `dev.monry.upm.some-package`) |
+| package_id | Full qualified package name (ex: `dev.monry.upm.some-package`) |
 | package_version | Version of package |
+
+### `upm remove package`
+
+Remove package dependency from `Packages/manifest.json` and `Assets/package.json`.
+
+```bash
+upm remove package <package_id>
+```
+
+| Name | Description |
+| --- | --- |
+| package_id | Full qualified package name (ex: `dev.monry.upm.some-package`) |
 
 ## License
 

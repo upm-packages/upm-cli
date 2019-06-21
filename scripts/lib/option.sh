@@ -25,6 +25,9 @@ for OPT in "$@"; do
           source "${DIRECTORY}/scripts/lib/option/upm-add-package.sh"
           break
           ;;
+        '' )
+          HELP=1; shift
+          ;;
         * )
           ;;
       esac
@@ -37,6 +40,9 @@ for OPT in "$@"; do
           SUBCOMMAND="package"; shift
           source "${DIRECTORY}/scripts/lib/option/upm-remove-package.sh"
           break
+          ;;
+        '' )
+          HELP=1; shift
           ;;
         * )
           ;;
