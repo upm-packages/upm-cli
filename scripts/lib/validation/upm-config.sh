@@ -20,7 +20,13 @@ ERROR: Could not find ${HOME}/.upm-config.json
         "url": "https://me.monry.dev/",
         "email": "monry@example.com"
       },
-      "license": "MIT",
+      "company": {
+        "name": "monry works"
+      },
+      "license": {
+        "type": "MIT",
+        "url": "https://monry.mit-license.org/LICENSE.txt"
+      },
       "repository": {
         "type": "git",
         "user": "monry",

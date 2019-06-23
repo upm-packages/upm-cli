@@ -54,7 +54,13 @@ Put configuration file like as below to `~/.upm-config.json`
         "url": "https://me.monry.dev/",
         "email": "monry@example.com"
       },
-      "license": "MIT",
+      "company": {
+        "name": "monry works"
+      },
+      "license": {
+        "type": "MIT",
+        "url": "https://monry.mit-license.org/LICENSE.txt"
+      },
       "repository": {
         "type": "git",
         "user": "monry",
@@ -66,13 +72,58 @@ Put configuration file like as below to `~/.upm-config.json`
 }
 ```
 
+You can configure multiple registries by making object's key unique.
+
+### Fields
+
+#### Required fields
+
 The following parameters are used when initialize a package project using `upm init`.
 Please be sure to rewrite the package author.
 
+* `name`
+* `protocol`
+* `hostname`
+* `scopes`
 * `author`
 * `license`
 * `repository`
 * `domain`
+
+#### Optinal fields
+
+* `unity_version`
+* `company`
+
+### License
+
+You can specify template for `LICENSE.txt` to set object like as below.
+
+```json
+"license": {
+  "type": "MIT",
+  "url": "https://monry.mit-license.org/LICENSE.txt"
+},
+```
+
+If you do not want to place LICENSE.txt, just make the `license` field a string.
+
+```json
+"license": "MIT",
+```
+
+### Company
+
+You can specify name of company, team or organization using `company` field.
+`company` field used to generate `ProjectSettings/ProjectSettings.asset` when project initialized.
+
+```json
+"company": {
+  "name": "monry works"
+},
+```
+
+![Company Name](https://user-images.githubusercontent.com/838945/59974124-358c1b00-95e3-11e9-95dc-ae1f13805042.png)
 
 ## Usage
 

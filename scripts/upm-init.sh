@@ -32,6 +32,7 @@ registry_json=$(cat ${config_file} | jq ".\"registries\".\"${REGISTRY_NAME}\"")
 registry_hostname=$(echo ${registry_json} | jq -r '."hostname"')
 registry_protocol=$(echo ${registry_json} | jq -r '."protocol"')
 
+project_name=${PACKAGE_NAME}
 package_domain=$(echo ${registry_json} | jq -r '."domain"')
 package_name=$(echo ${PACKAGE_NAME} | tr '[:upper:]' '[:lower:]')
 package_name=${package_name//\./-}
@@ -41,13 +42,26 @@ unity_version=$(echo ${registry_json} | jq -r '."unity_version"')
 author_name=$(echo ${registry_json} | jq -r '."author"."name"')
 author_url=$(echo ${registry_json} | jq -r '."author"."url"')
 author_email=$(echo ${registry_json} | jq -r '."author"."email"')
-license=$(echo ${registry_json} | jq -r '."license"')
+company_name="DefaultCompany"
+if [ "null" != "$(echo ${registry_json} | jq -r '."company"."name"')" ]; then
+  company_name=$(echo ${registry_json} | jq -r '."company"."name"')
+fi
 repository_type=$(echo ${registry_json} | jq -r '."repository"."type"')
 repository_user=$(echo ${registry_json} | jq -r '."repository"."user"')
 if [ -z "${repository_user}" ]; then
   repository_user=$(echo ${registry_json} | jq -r '."repository"."organization"')
 fi
 repository_name=${PACKAGE_NAME//\./-}
+license="UNLICENSED"
+license_url=""
+if [ "string" = "$(echo ${registry_json} | jq -r '.license|type')" ]; then
+  license=$(echo ${registry_json} | jq -r '.license')
+elif [ "object" = "$(echo ${registry_json} | jq -r '.license|type')" ] && [ "null" != "$(echo ${registry_json} | jq -r '.license.type')" ]; then
+  license=$(echo ${registry_json} | jq -r '.license.type')
+  if [ "null" != "$(echo ${registry_json} | jq -r '.license.url')" ]; then
+    license_url=$(echo ${registry_json} | jq -r '.license.url')
+  fi
+fi
 
 if [ -d "${repository_name}" ]; then
   cat << __VALIDATE_DIRECTORY__
@@ -83,10 +97,39 @@ __PACKAGE_JSON__
 )
 
 mkdir -p "${repository_name}/Assets"
+mkdir -p "${repository_name}/ProjectSettings"
 cd "${repository_name}"
 echo ${package_json} | jq -M '.' > Assets/package.json
 echo "registry=${registry_protocol}://${registry_hostname}" > .npmrc
-echo "# ${display_name}" > Assets/README.md
+
+cat > Assets/README.md << __README__
+# ${display_name}
+
+## Installation
+
+\`\`\`bash
+upm add package ${package_domain}.${package_name}
+\`\`\`
+
+## Usages
+
+* 
+__README__
+ln -s Assets/README.md README.md
+
+cat > Assets/CHANGELOG.md << __CHANGELOG__
+# Changelog
+
+## [1.0.0] - YYYY-MM-DD
+
+* Initial version
+
+### Features
+
+* 
+__CHANGELOG__
+ln -s Assets/CHANGELOG.md CHANGELOG.md
+
 cat > Assets/.npmignore << __NPMIGNORE__
 .npmignore
 yarn-debug.log*
@@ -95,9 +138,25 @@ Plugins/
 Plugins.meta
 
 __NPMIGNORE__
+
+cat > ProjectSettings/ProjectSettings.asset << __PROJECT_SETTINGS__
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!129 &1
+PlayerSettings:
+  companyName: ${company_name}
+  productName: ${project_name}
+  applicationIdentifier:
+    Standalone: ${package_domain}.${package_name}
+__PROJECT_SETTINGS__
 curl -so .gitignore https://gist.githubusercontent.com/monry/c23a36851466c5c63659aa24405778ca/raw/a91f9250f576d03ab5ffdf13c5efa6b69d311f60/Unity.gitignore
 git init
 git remote add origin git@github.com:${repository_user}/${repository_name}.git
+if [ -n "${license_url}" ]; then
+  curl -so Assets/LICENSE.txt ${license_url}
+  # GitHub does not support SymLink for LICENSE.txt
+  curl -so LICENSE.txt ${license_url}
+fi
 
 cat << __MESSAGE__
 Finish prepare to developing Unity Package !
