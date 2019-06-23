@@ -57,3 +57,17 @@ function teardown() {
 
   assert_output --partial "Could not find registry for dev.sample2.upm.foo"
 }
+
+@test "upm-add-package / ignore Assets/package.json if not exists" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/single.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+  mkdir -p $TEST_TEMP_DIR/Test-Project/Packages
+  echo '{}' > $TEST_TEMP_DIR/Test-Project/Packages/manifest.json
+  cd $TEST_TEMP_DIR/Test-Project
+  run ${cwd}/upm add registry
+  run ${cwd}/upm add package dev.sample.upm.foo 1.2.3
+
+  [ ! -f $TEST_TEMP_DIR/Test-Project/Assets/package.json ]
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Packages/manifest.json" "\"dev.sample.upm.foo\": \"1.2.3\""
+}
