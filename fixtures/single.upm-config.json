@@ -13,6 +13,9 @@
         "url": "https://sample.dev/",
         "email": "test@sample.dev"
       },
+      "company": {
+        "name": "Sample Company"
+      },
       "license": {
         "type": "MIT",
         "url": "https://sample.mit-license.org/LICENSE.txt"

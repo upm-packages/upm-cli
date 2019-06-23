@@ -42,9 +42,12 @@ Description"
   assert_dir_exist "${TEST_TEMP_DIR}/Test-Project"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/.npmrc"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/Assets/package.json"
+  assert_file_exist "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/.npmrc" "upm.sample.dev"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "dev.sample.upm"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "\"displayName\": \"Test Project\""
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "companyName: Sample Company"
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "productName: Test.Project"
 }
 
 @test "upm-init / multiple registries configured (STDIN)" {
@@ -60,9 +63,12 @@ Description"
   assert_dir_exist "${TEST_TEMP_DIR}/Test-Project"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/.npmrc"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/Assets/package.json"
+  assert_file_exist "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/.npmrc" "upm2.sample.dev"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "dev.sample.upm2"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "\"displayName\": \"Test Project\""
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "companyName: Sample Company2"
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "productName: Test.Project"
 }
 
 @test "upm-init / single registry configured (parameters)" {
@@ -75,9 +81,12 @@ Description"
   assert_dir_exist "${TEST_TEMP_DIR}/Test-Project"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/.npmrc"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/Assets/package.json"
+  assert_file_exist "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/.npmrc" "upm.sample.dev"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "dev.sample.upm"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "\"displayName\": \"Test Project\""
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "companyName: Sample Company"
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "productName: Test.Project"
 }
 
 @test "upm-init / multiple registries configured (parameters)" {
@@ -90,9 +99,12 @@ Description"
   assert_dir_exist "${TEST_TEMP_DIR}/Test-Project"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/.npmrc"
   assert_file_exist "${TEST_TEMP_DIR}/Test-Project/Assets/package.json"
+  assert_file_exist "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/.npmrc" "upm1.sample.dev"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "dev.sample.upm1"
   assert_file_contains "${TEST_TEMP_DIR}/Test-Project/Assets/package.json" "\"displayName\": \"Test Project\""
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "companyName: Sample Company1"
+  assert_file_contains "${TEST_TEMP_DIR}/Test-Project/ProjectSettings/ProjectSettings.asset" "productName: Test.Project"
 }
 
 @test "upm-init / invalid Registry Name passed" {

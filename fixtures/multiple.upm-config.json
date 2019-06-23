@@ -13,6 +13,9 @@
         "url": "https://sample.dev/",
         "email": "test@sample.dev"
       },
+      "company": {
+        "name": "Sample Company1"
+      },
       "license": {
         "type": "MIT",
         "url": "https://sample.mit-license.org/LICENSE.txt"
@@ -36,6 +39,9 @@
         "name": "Test",
         "url": "https://sample.dev/",
         "email": "test@sample.dev"
+      },
+      "company": {
+        "name": "Sample Company2"
       },
       "license": "MIT",
       "repository": {
