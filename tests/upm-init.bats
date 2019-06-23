@@ -144,3 +144,27 @@ Description"
 
   assert_output -p "Please specify Display Name"
 }
+
+@test "upm-init / generate files about package" {
+  cp "$( dirname ${BATS_TEST_DIRNAME} )"/fixtures/multiple.upm-config.json ~/.upm-config.json
+  cwd=$(pwd)
+  cd $TEST_TEMP_DIR
+
+  run ${cwd}/upm init upm1.sample.dev Test.Project1 "Test Project1" Description
+
+  [ -L "${TEST_TEMP_DIR}/Test-Project1/README.md" ]
+  [ ! -L "${TEST_TEMP_DIR}/Test-Project1/Assets/README.md" ]
+  [ -L "${TEST_TEMP_DIR}/Test-Project1/CHANGELOG.md" ]
+  [ ! -L "${TEST_TEMP_DIR}/Test-Project1/Assets/CHANGELOG.md" ]
+  [ ! -L "${TEST_TEMP_DIR}/Test-Project1/LICENSE.txt" ]
+  [ ! -L "${TEST_TEMP_DIR}/Test-Project1/Assets/LICENSE.txt" ]
+
+  run ${cwd}/upm init upm2.sample.dev Test.Project2 "Test Project2" Description
+
+  [ -L "${TEST_TEMP_DIR}/Test-Project2/README.md" ]
+  [ ! -L "${TEST_TEMP_DIR}/Test-Project2/Assets/README.md" ]
+  [ -L "${TEST_TEMP_DIR}/Test-Project2/CHANGELOG.md" ]
+  [ ! -L "${TEST_TEMP_DIR}/Test-Project2/Assets/CHANGELOG.md" ]
+  [ ! -f "${TEST_TEMP_DIR}/Test-Project2/LICENSE.txt" ]
+  [ ! -f "${TEST_TEMP_DIR}/Test-Project2/Assets/LICENSE.txt" ]
+}
