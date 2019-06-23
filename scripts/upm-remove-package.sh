@@ -24,14 +24,16 @@ else
   echo ${manifest_json} | jq -M '.' > ${manifest_file}
 fi
 
-current_version_package=$(cat ${package_json_file} | jq -r ".dependencies.\"${package_id}\"")
-if [ "${current_version_package}" = "null" ]; then
-  cat << __WARNING__
+if [ -f ${package_json_file} ]; then
+  current_version_package=$(cat ${package_json_file} | jq -r ".dependencies.\"${package_id}\"")
+  if [ "${current_version_package}" = "null" ]; then
+    cat << __WARNING__
 WARNING: "${package_id}" does not contains in "${package_json_file}"
 __WARNING__
-else
-  package_json=$(cat ${package_json_file} | jq "del(.dependencies.\"${package_id}\")")
-  echo ${package_json} | jq -M '.' > ${package_json_file}
+  else
+    package_json=$(cat ${package_json_file} | jq "del(.dependencies.\"${package_id}\")")
+    echo ${package_json} | jq -M '.' > ${package_json_file}
+  fi
 fi
 
 cat << __MESSAGE__

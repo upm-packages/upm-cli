@@ -20,8 +20,10 @@ version=${VERSION}
 
 manifest_json=$(cat ${manifest_file} | jq ".dependencies |= . + {\"${package_id}\": \"${version}\"}")
 echo ${manifest_json} | jq -M '.' > ${manifest_file}
-package_json=$(cat ${package_json_file} | jq ".dependencies |= . + {\"${package_id}\": \"${version}\"}")
-echo ${package_json} | jq -M '.' > ${package_json_file}
+if [ -f ${package_json_file} ]; then
+  package_json=$(cat ${package_json_file} | jq ".dependencies |= . + {\"${package_id}\": \"${version}\"}")
+  echo ${package_json} | jq -M '.' > ${package_json_file}
+fi
 
 cat << __MESSAGE__
 Successfully add package "${package_id}@${version}" to project 📦
