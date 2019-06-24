@@ -11,7 +11,7 @@ while [ "$TARGET_FILE" != "" ]; do
     TARGET_FILE=`readlink $FILENAME`
 done
 DIRECTORY=`pwd -P`
-cd $cwd
+cd "$cwd"
 
 source "${DIRECTORY}/scripts/lib/option.sh"
 source "${DIRECTORY}/scripts/lib/usage.sh"
