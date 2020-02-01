@@ -107,8 +107,33 @@ cat > Assets/README.md << __README__
 
 ## Installation
 
+### Use Command Line
+
 \`\`\`bash
 upm add package ${package_domain}.${package_name}
+\`\`\`
+
+Note: \`upm\` command is provided by [this repository](https://github.com/upm-packages/upm-cli).
+
+### Edit \`Packages/manifest.json\`
+
+\`\`\`jsonc
+{
+  "dependencies": {
+    // (snip)
+    "${package_domain}.${package_name}": "[latest version]", 
+    // (snip)
+  },
+  "scopedRegistries": [
+    {
+      "name": "Unofficial Unity Package Manager Registry",
+      "url": "https://upm-packages.dev",
+      "scopes": [
+        "${package_domain}"
+      ]
+    }
+  ]
+}
 \`\`\`
 
 ## Usages
