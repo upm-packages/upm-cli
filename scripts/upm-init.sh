@@ -117,23 +117,19 @@ Note: \`upm\` command is provided by [this repository](https://github.com/upm-pa
 
 ### Edit \`Packages/manifest.json\`
 
-\`\`\`javascript
+\`\`\`jsonc
 {
   "dependencies": {
-    // ...
+    // (snip)
     "${package_domain}.${package_name}": "[latest version]", 
-    // ...
+    // (snip)
   },
   "scopedRegistries": [
     {
       "name": "Unofficial Unity Package Manager Registry",
       "url": "https://upm-packages.dev",
       "scopes": [
-        "com.unity.simpleanimation",
-        "com.stevevermeulen",
-        "jp.cysharp",
-        "dev.monry",
-        "dev.upm-packages"
+        "${package_domain}"
       ]
     }
   ]
