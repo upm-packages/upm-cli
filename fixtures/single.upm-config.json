@@ -25,6 +25,10 @@
         "user": "sample",
         "organization": ""
       },
+      "publish": {
+        "protocol": "https",
+        "hostname": "upm.sample2.dev"
+      },
       "domain": "dev.sample.upm"
     }
   }
