@@ -153,13 +153,6 @@ ln -s Assets/README.md README.md
 cat > Assets/CHANGELOG.md << __CHANGELOG__
 # Changelog
 
-## [1.0.0] - YYYY-MM-DD
-
-* Initial version
-
-### Features
-
-* 
 __CHANGELOG__
 ln -s Assets/CHANGELOG.md CHANGELOG.md
 
@@ -167,8 +160,6 @@ cat > Assets/.npmignore << __NPMIGNORE__
 .npmignore
 yarn-debug.log*
 yarn-error.log*
-Plugins/
-Plugins.meta
 
 __NPMIGNORE__
 
