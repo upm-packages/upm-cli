@@ -160,8 +160,6 @@ cat > Assets/.npmignore << __NPMIGNORE__
 .npmignore
 yarn-debug.log*
 yarn-error.log*
-Plugins/
-Plugins.meta
 
 __NPMIGNORE__
 
