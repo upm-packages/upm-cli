@@ -174,6 +174,27 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: ${package_domain}.${package_name}
 __PROJECT_SETTINGS__
+
+mkdir -p .github/workflows/
+cat > .github/workflows/publish-upm-package.yml << __GITHUB_ACTIONS__
+name: Publish UPM Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: monry/actions-upm-publish@v1
+      with:
+        npm_auth_token: \${{ secrets.NPM_AUTH_TOKEN }}
+__GITHUB_ACTIONS__
+
 curl -so .gitignore https://gist.githubusercontent.com/monry/c23a36851466c5c63659aa24405778ca/raw/a91f9250f576d03ab5ffdf13c5efa6b69d311f60/Unity.gitignore
 git init
 git remote add origin git@github.com:${repository_user}/${repository_name}.git
@@ -192,6 +213,7 @@ Finish prepare to developing Unity Package !
   git add .
   git commit -m ":baby: Initial commit"
   git push origin master
+  # create releases on GitHub
 
 Enjoy development 🎉
 __MESSAGE__
