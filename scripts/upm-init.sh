@@ -115,15 +115,13 @@ cat > Assets/README.md << __README__
 
 ## Installation
 
-### Use Command Line
-
 \`\`\`bash
 upm add package ${package_domain}.${package_name}
 \`\`\`
 
 Note: \`upm\` command is provided by [this repository](https://github.com/upm-packages/upm-cli).
 
-### Edit \`Packages/manifest.json\`
+You can also edit \`Packages/manifest.json\` directly.
 
 \`\`\`jsonc
 {
