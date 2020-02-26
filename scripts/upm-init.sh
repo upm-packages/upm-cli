@@ -62,6 +62,14 @@ elif [ "object" = "$(echo ${registry_json} | jq -r '.license|type')" ] && [ "nul
     license_url=$(echo ${registry_json} | jq -r '.license.url')
   fi
 fi
+publish_registry_hostname=$(echo ${registry_json} | jq -r '."publish"."hostname"')
+if [ -z "${publish_registry_hostname}" ]; then
+  publish_registry_hostname=${registry_hostname}
+fi
+publish_registry_protocol=$(echo ${registry_json} | jq -r '."publish"."protocol"')
+if [ -z "${publish_registry_protocol}" ]; then
+  publish_registry_protocol=${registry_protocol}
+fi
 
 if [ -d "${repository_name}" ]; then
   cat << __VALIDATE_DIRECTORY__
@@ -100,7 +108,7 @@ mkdir -p "${repository_name}/Assets"
 mkdir -p "${repository_name}/ProjectSettings"
 cd "${repository_name}"
 echo ${package_json} | jq -M '.' > Assets/package.json
-echo "registry=${registry_protocol}://${registry_hostname}" > .npmrc
+echo "registry=${publish_registry_protocol}://${publish_registry_hostname}" > .npmrc
 
 cat > Assets/README.md << __README__
 # ${display_name}

@@ -25,6 +25,10 @@
         "user": "sample",
         "organization": ""
       },
+      "publish": {
+        "protocol": "https",
+        "hostname": "upm1.sample2.dev"
+      },
       "domain": "dev.sample.upm1"
     },
     "upm2.sample.dev": {
@@ -48,6 +52,10 @@
         "type": "git",
         "user": "sample",
         "organization": ""
+      },
+      "publish": {
+        "protocol": "https",
+        "hostname": "upm2.sample2.dev"
       },
       "domain": "dev.sample.upm2"
     }

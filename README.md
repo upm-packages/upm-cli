@@ -66,6 +66,10 @@ Put configuration file like as below to `~/.upm-config.json`
         "user": "monry",
         "organization": ""
       },
+      "publish": {
+        "protocol": "https",
+        "hostname": "upm-packages.dev"
+      },
       "domain": "dev.monry.upm"
     }
   }
@@ -94,6 +98,7 @@ Please be sure to rewrite the package author.
 
 * `unity_version`
 * `company`
+* `publish`
 
 ### License
 
@@ -191,6 +196,6 @@ upm remove package <package_id>
 
 ## License
 
-Copyright &copy; 2019 Tetsuya Mori
+Copyright &copy; 2019-2020 Tetsuya Mori
 
 Released under the MIT license, see [LICENSE.txt](LICENSE.txt)
