@@ -29,6 +29,7 @@ source "${DIRECTORY}/scripts/lib/variable/description.sh"
 # Description has no validation
 
 registry_json=$(cat ${config_file} | jq ".\"registries\".\"${REGISTRY_NAME}\"")
+registry_name=$(echo ${registry_json} | jq -r '."name"')
 registry_hostname=$(echo ${registry_json} | jq -r '."hostname"')
 registry_protocol=$(echo ${registry_json} | jq -r '."protocol"')
 
@@ -132,8 +133,8 @@ You can also edit \`Packages/manifest.json\` directly.
   },
   "scopedRegistries": [
     {
-      "name": "Unofficial Unity Package Manager Registry",
-      "url": "https://upm-packages.dev",
+      "name": "${registry_name}",
+      "url": "${registry_protocol}://${registry_hostname}",
       "scopes": [
         "${package_domain}"
       ]
