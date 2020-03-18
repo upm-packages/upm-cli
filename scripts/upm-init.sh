@@ -159,7 +159,8 @@ cat > Assets/.npmignore << __NPMIGNORE__
 .npmignore
 yarn-debug.log*
 yarn-error.log*
-
+Tests/
+Tests.meta
 __NPMIGNORE__
 
 cat > ProjectSettings/ProjectSettings.asset << __PROJECT_SETTINGS__
