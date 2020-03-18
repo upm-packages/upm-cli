@@ -174,6 +174,14 @@ PlayerSettings:
     Standalone: ${package_domain}.${package_name}
 __PROJECT_SETTINGS__
 
+cat > ProjectSettings/EditorSettings.asset << __EDITOR_SETTINGS__
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!159 &1
+EditorSettings:
+  m_ProjectGenerationRootNamespace: ${PACKAGE_NAME}
+__EDITOR_SETTINGS__
+
 mkdir -p .github/workflows/
 cat > .github/workflows/publish-upm-package.yml << __GITHUB_ACTIONS__
 name: Publish UPM Package
