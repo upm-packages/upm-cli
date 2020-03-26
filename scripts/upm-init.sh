@@ -112,6 +112,8 @@ echo ${package_json} | jq -M '.' > Assets/package.json
 echo "registry=${publish_registry_protocol}://${publish_registry_hostname}" > .npmrc
 
 cat > Assets/README.md << __README__
+![](https://github.com/${repository_user}/${repository_name}/workflows/Publish%20UPM%20Package/badge.svg)
+
 # ${display_name}
 
 ## Installation
